@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora Minecraft</title>
+  <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Minecraft', sans-serif;
+      background: linear-gradient(135deg, #1e1e1e, #3c3c3c);
+      color: white;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: #262626;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #00ffcc;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #00ffcc;
+      text-shadow: 0 0 6px #00ffee;
+    }
+
+    #display {
+      width: 100%;
+      height: 50px;
+      font-size: 22px;
+      text-align: right;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #444;
+      color: #fff;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 60px);
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .btn {
+      height: 60px;
+      font-size: 20px;
+      background: #00ffcc;
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: 'Minecraft', sans-serif;
+    }
+
+    .btn:hover {
+      background: #00ffee;
+    }
+
+    .btn:active {
+      transform: scale(0.95);
+      box-shadow: 0 0 8px #00ffee;
+    }
+
+    .btn.wide {
+      grid-column: span 2;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Calculadora Craft</h1>
+  <input type="text" id="display" disabled>
+  <div class="buttons">
+    <button class="btn" onclick="clique('7')">7</button>
+    <button class="btn" onclick="clique('8')">8</button>
+    <button class="btn" onclick="clique('9')">9</button>
+    <button class="btn" onclick="clique('/')">÷</button>
+
+    <button class="btn" onclick="clique('4')">4</button>
+    <button class="btn" onclick="clique('5')">5</button>
+    <button class="btn" onclick="clique('6')">6</button>
+    <button class="btn" onclick="clique('*')">×</button>
+
+    <button class="btn" onclick="clique('1')">1</button>
+    <button class="btn" onclick="clique('2')">2</button>
+    <button class="btn" onclick="clique('3')">3</button>
+    <button class="btn" onclick="clique('-')">−</button>
+
+    <button class="btn" onclick="clique('0')">0</button>
+    <button class="btn" onclick="clique('.')">.</button>
+    <button class="btn" onclick="calcular()">=</button>
+    <button class="btn" onclick="clique('+')">+</button>
+
+    <button class="btn wide" onclick="limpar()">C</button>
+  </div>
+</div>
+
+<audio id="clickSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6ff2fd0d4d.mp3?filename=click-124467.mp3" preload="auto"></audio>
+
+<script>
+  function clique(val) {
+    document.getElementById('display').value += val;
+    document.getElementById('clickSound').play();
+  }
+
+  function calcular() {
+    try {
+      document.getElementById('display').value = eval(document.getElementById('display').value);
+    } catch {
+      document.getElementById('display').value = 'Erro';
+    }
+    document.getElementById('clickSound').play();
+  }
+
+  function limpar() {
+    document.getElementById('display').value = '';
+    document.getElementById('clickSound').play();
+  }
+</script>
+
+</body>
+</html>
